@@ -4,13 +4,31 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
 import java.awt.event.KeyListener;
+import java.util.UUID;
 
 import javax.swing.JTextField;
 import javax.swing.event.MouseInputAdapter;
 
 import lab.darf.javaui.components.organizers.UIContainerElement;
+import lombok.Getter;
 
 public class UITextField extends JTextField implements UINonContainerElement {
+
+    @Getter private String name = "";
+    public UITextField() {
+        name = UUID.randomUUID().toString();
+    }
+
+    @Override
+    public UITextField name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UITextField && ((UITextField) obj).name.equals(name);
+    }
 
     @Override
     public UITextField visible(boolean visible) {

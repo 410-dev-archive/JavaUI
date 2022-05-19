@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.Color;
 
 public interface UIElement {
+    public UIElement name(String name);
     public UIElement visible(boolean visible);
     public UIElement color(Color color);
     public UIElement opaque(boolean opaque);
@@ -33,4 +34,5 @@ public interface UIElement {
     public int getWidth();
     public int getHeight();
     public Color getColor();
+    public String getName();
 }

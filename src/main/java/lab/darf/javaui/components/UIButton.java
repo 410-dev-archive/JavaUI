@@ -4,19 +4,37 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
 import java.awt.event.KeyListener;
+import java.util.UUID;
 
 import javax.swing.JButton;
 import javax.swing.event.MouseInputAdapter;
 
 import lab.darf.javaui.components.organizers.UIContainerElement;
+import lombok.Getter;
 
 public class UIButton extends JButton implements UINonContainerElement {
+
+    @Getter private String name = "";
+
+    @Override
+    public UIButton name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UIButton && ((UIButton) obj).name.equals(name);
+    }
+
     public UIButton(String text) {
         super(text);
+        name = UUID.randomUUID().toString();
     }
 
     public UIButton() {
         super();
+        name = UUID.randomUUID().toString();
         setOpaque(false);
     }
 

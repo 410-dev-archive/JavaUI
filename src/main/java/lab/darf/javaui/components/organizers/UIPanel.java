@@ -4,23 +4,40 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
 import lab.darf.javaui.components.UIElement;
+import lombok.Getter;
 
 public class UIPanel extends JPanel implements UIContainerElement {
 
     private ArrayList<UIElement> elements = new ArrayList<>();
 
+    @Getter private String name = "";
+
+    @Override
+    public UIPanel name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UIPanel && ((UIPanel) obj).name.equals(name);
+    }
+
     public UIPanel() {
         super();
+        name = UUID.randomUUID().toString();
         setOpaque(false);
     }
 
     public UIPanel opaque(boolean opaque) {
         setOpaque(opaque);
+        name = UUID.randomUUID().toString();
         return this;
     }
 
@@ -151,5 +168,20 @@ public class UIPanel extends JPanel implements UIContainerElement {
             add((Component) element);
         }
         return this;
+    }
+
+    @Override
+    public ArrayList<UIElement> components() {
+        return elements;
+    }
+
+    @Override
+    public UIElement component(String name) {
+        for (UIElement element : elements) {
+            if (element.getName().equals(name)) {
+                return element;
+            }
+        }
+        return null;
     }
 }

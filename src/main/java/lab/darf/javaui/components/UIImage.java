@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -17,13 +18,28 @@ import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
 import lab.darf.javaui.components.organizers.UIContainerElement;
+import lombok.Getter;
 
 public class UIImage extends JPanel implements UINonContainerElement {
 
     private Image img;
 
+    @Getter private String name = "";
+
+    @Override
+    public UIImage name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UIImage && ((UIImage) obj).name.equals(name);
+    }
+
     public UIImage() {
         super();
+        name = UUID.randomUUID().toString();
         setOpaque(false);
         setLayout(null);
     }

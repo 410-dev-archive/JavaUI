@@ -4,20 +4,38 @@ import javax.swing.JLabel;
 import javax.swing.event.MouseInputAdapter;
 
 import lab.darf.javaui.components.organizers.UIContainerElement;
+import lombok.Getter;
 
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyListener;
+import java.util.UUID;
 
 public class UILabel extends JLabel implements UINonContainerElement {
+
+    @Getter private String name = "";
+
+    @Override
+    public UILabel name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UILabel && ((UILabel) obj).name.equals(name);
+    }
+
     public UILabel(String text) {
         super(text);
+        name = UUID.randomUUID().toString();
         setOpaque(false);
     }
 
     public UILabel(){
         super();
+        name = UUID.randomUUID().toString();
         setOpaque(false);
     }
 

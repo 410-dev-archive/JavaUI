@@ -4,19 +4,34 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
 import java.awt.event.KeyListener;
+import java.util.UUID;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.event.MouseInputAdapter;
 
 import lab.darf.javaui.components.organizers.UIContainerElement;
+import lombok.Getter;
 
 public class UIScrollableTextField extends JScrollPane implements UINonContainerElement {
 
     private JTextArea textArea;
+    @Getter private String name = "";
+
+    @Override
+    public UIScrollableTextField name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UIScrollableTextField && ((UIScrollableTextField) obj).name.equals(name);
+    }
 
     public UIScrollableTextField() {
         super(new JTextArea());
+        name = UUID.randomUUID().toString();
         textArea = (JTextArea) getViewport().getView();
     }
 

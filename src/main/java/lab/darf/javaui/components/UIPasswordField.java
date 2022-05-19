@@ -4,14 +4,33 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
 import java.awt.event.KeyListener;
+import java.util.UUID;
 
 import javax.swing.event.MouseInputAdapter;
 
 import lab.darf.javaui.components.organizers.UIContainerElement;
+import lombok.Getter;
 
 import javax.swing.JPasswordField;
 
 public class UIPasswordField extends JPasswordField implements UINonContainerElement {
+
+    @Getter private String name = "";
+    public UIPasswordField() {
+        name = UUID.randomUUID().toString();
+    }
+
+    @Override
+    public UIPasswordField name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UIPasswordField && ((UIPasswordField) obj).name.equals(name);
+    }
+
     @Override
     public UIPasswordField visible(boolean visible) {
         setVisible(visible);

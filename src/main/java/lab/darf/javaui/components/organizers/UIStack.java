@@ -6,12 +6,14 @@ import java.awt.Component;
 import java.awt.event.KeyListener;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
 import lab.darf.javaui.components.UIElement;
 import lab.darf.javaui.components.UINonContainerElement;
+import lombok.Getter;
 
 public class UIStack extends JPanel implements UIContainerElement {
 
@@ -23,16 +25,31 @@ public class UIStack extends JPanel implements UIContainerElement {
     private short type = 0;
     private int offset = 0;
 
+    @Getter private String name = "";
+
+    @Override
+    public UIStack name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UIStack && ((UIStack) obj).name.equals(name);
+    }
+
     public UIStack(int width, int height, short type) {
         super();
         setSize(width, height);
         setOpaque(false);
+        this.name = UUID.randomUUID().toString();
         this.type = type;
         this.setLayout(null);
     }
 
     public UIStack(short type) {
         super();
+        this.name = UUID.randomUUID().toString();
         setOpaque(false);
         this.type = type;
         this.setLayout(null);
@@ -247,6 +264,21 @@ public class UIStack extends JPanel implements UIContainerElement {
     public UIElement opaque(boolean opaque) {
         setOpaque(opaque);
         return this;
+    }
+
+    @Override
+    public ArrayList<UIElement> components() {
+        return componentList;
+    }
+
+    @Override
+    public UIElement component(String name) {
+        for (UIElement element : componentList) {
+            if (element.getName().equals(name)) {
+                return element;
+            }
+        }
+        return null;
     }
 
 }
