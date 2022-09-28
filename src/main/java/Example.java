@@ -1,64 +1,48 @@
-import java.awt.Color;
+import luke.hysong.javaui.UIWindowManager;
+import luke.hysong.javaui.components.UIButton;
+import luke.hysong.javaui.components.UIComboBox;
+import luke.hysong.javaui.components.UILabel;
+import luke.hysong.javaui.components.UIScene;
+import luke.hysong.javaui.components.organizers.VerticalStack;
+import luke.hysong.javaui.properties.UIWindowProperty;
 
-import lab.darf.javaui.UIWindowManager;
-import lab.darf.javaui.components.UIScene;
-import lab.darf.javaui.components.organizers.HorizontalStack;
-import lab.darf.javaui.components.organizers.UIPanel;
-import lab.darf.javaui.components.organizers.VerticalStack;
-import lab.darf.javaui.components.UIImage;
-import lab.darf.javaui.components.UILabel;
-import lab.darf.javaui.properties.UIWindowDimension;
-import lab.darf.javaui.properties.UIWindowProperty;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.event.MouseEvent;
 
 public class Example {
-
-    public static void main(String[] args) throws Exception {
-
+    public static void main(String[] args) {
         UIWindowManager.newWindow(
             new UIWindowProperty()
-                .name("window.helloworld")
-                .title("Hello World")
-                .dimension(
-                    new UIWindowDimension()
-                        .size(1000, 800)
-                        .toCenter()
-                )
-        )
-            .loadScene(
-                new UIScene()
-                    .color(Color.BLACK)
-                    .components(
-                        new VerticalStack()
-                            .offset(10)
-                            .components(
-                                new UIImage()
-                                    .imageFile("/Users/hoyounsong/Desktop/image.png"),
-
-                                new UIImage()
-                                    .imageFile("/Users/hoyounsong/Desktop/image.png"),
-
-                                new HorizontalStack()
-                                    .offset(5)
-                                    .components(
-                                        new UIImage()
-                                            .imageFile("/Users/hoyounsong/Desktop/image.png"),
-
-                                        new UIImage()
-                                            .imageFile("/Users/hoyounsong/Desktop/image.png")
-                                    ),
-
-                                new UIPanel()
-                                    .color(Color.BLUE)
-                                    .components(
-                                        new HorizontalStack()
-                                            .components(
-                                                new UILabel()
-                                                    .text("Hello World")
-                                                    .color(Color.WHITE)
-                                            )
-                                    )
+                .name("test")
+                .title("Test")
+        ).loadScene(
+            new UIScene()
+                .components(
+                    new VerticalStack()
+                        .components(
+                            new UILabel("Hello World")
+                                .width(100),
+                            new UIButton("Click Me")
+                                .width(100)
+                                .action(new MouseInputAdapter() {
+                                    public void mouseClicked(MouseEvent e) {
+                                        UIWindowManager.newWindow(
+                                            new UIWindowProperty()
+                                                .name("Popup")
+                                                .title("Popup")
+                                        ).loadScene(
+                                            new UIScene()
+                                                .components(
+                                                    new UILabel("Hello World")
+                                                        .width(100)
+                                                        .height(100)
+                                                )
+                                        );
+                                    }
+                                }
                             )
-                    )
-            );
+                        )
+                )
+        );
     }
 }
