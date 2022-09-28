@@ -1,4 +1,4 @@
-package lab.darf.javaui.properties;
+package luke.hysong.javaui.properties;
 
 import lombok.Getter;
 

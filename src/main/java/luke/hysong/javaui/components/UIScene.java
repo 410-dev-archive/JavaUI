@@ -1,4 +1,4 @@
-package lab.darf.javaui.components;
+package luke.hysong.javaui.components;
 
 import java.awt.Component;
 import java.util.ArrayList;
@@ -35,5 +35,16 @@ public class UIScene {
 
     public Color getColor() {
         return color;
+    }
+
+    public UIElement getComponent(String name) {
+        for (Object element : components) {
+            if (element instanceof UIElement) {
+                if (((UIElement) element).getName().equals(name)) {
+                    return (UIElement) element;
+                }
+            }
+        }
+        return null;
     }
 }

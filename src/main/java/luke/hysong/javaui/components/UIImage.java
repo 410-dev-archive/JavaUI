@@ -1,4 +1,4 @@
-package lab.darf.javaui.components;
+package luke.hysong.javaui.components;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
-import lab.darf.javaui.components.organizers.UIContainerElement;
+import luke.hysong.javaui.components.organizers.UIContainerElement;
 import lombok.Getter;
 
 public class UIImage extends JPanel implements UINonContainerElement {

@@ -1,14 +1,15 @@
-package lab.darf.javaui;
+package luke.hysong.javaui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import java.awt.Component;
+import java.util.ArrayList;
 
-import lab.darf.javaui.components.UIScene;
-import lab.darf.javaui.components.organizers.UIContainerElement;
-import lab.darf.javaui.components.organizers.UIStack;
-import lab.darf.javaui.properties.UIWindowProperty;
+import luke.hysong.javaui.components.UIScene;
+import luke.hysong.javaui.components.organizers.UIContainerElement;
+import luke.hysong.javaui.components.organizers.UIStack;
+import luke.hysong.javaui.properties.UIWindowProperty;
 
 public class UIWindow {
     protected JFrame frame;
@@ -16,6 +17,8 @@ public class UIWindow {
     protected String windowName;
 
     protected UIScene currentScene;
+
+    protected ArrayList<UIScene> queuedScenes = new ArrayList<>();
 
     protected JPanel contentPane;
 
@@ -55,7 +58,7 @@ public class UIWindow {
         }
         contentPane.setBackground(s.getColor());
 
-        return this;
+        return loadQueuedScenes();
     }
 
     public UIWindow loadScene(JPanel p) {
@@ -63,6 +66,24 @@ public class UIWindow {
         p.setSize(frame.getWidth(), frame.getHeight());
         contentPane.add(p);
         return this;
+    }
+
+    public UIWindow loadSceneAfterCurrentSceneLoading(UIScene s) {
+        queuedScenes.add(s);
+        return this;
+    }
+
+    private UIWindow loadQueuedScenes() {
+        if (queuedScenes.size() > 0) {
+            ArrayList<UIScene> localQueue = new ArrayList<>(queuedScenes);
+            queuedScenes.clear();
+            for(UIScene s : localQueue) {
+                loadScene(s);
+            }
+            return this;
+        }else {
+            return this;
+        }
     }
 
     public UIScene getCurrentScene() {

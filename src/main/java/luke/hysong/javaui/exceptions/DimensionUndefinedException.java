@@ -1,4 +1,4 @@
-package lab.darf.javaui.exceptions;
+package luke.hysong.javaui.exceptions;
 
 public class DimensionUndefinedException extends Exception {
     public DimensionUndefinedException() {

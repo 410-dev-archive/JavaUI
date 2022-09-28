@@ -1,10 +1,10 @@
-package lab.darf.javaui;
+package luke.hysong.javaui;
 
 import java.util.ArrayList;
 
-import lab.darf.javaui.exceptions.NoSuchUIWindowException;
-import lab.darf.javaui.exceptions.RepeatedUIWindowNameException;
-import lab.darf.javaui.properties.UIWindowProperty;
+import luke.hysong.javaui.exceptions.NoSuchUIWindowException;
+import luke.hysong.javaui.exceptions.RepeatedUIWindowNameException;
+import luke.hysong.javaui.properties.UIWindowProperty;
 
 public class UIWindowManager {
     
@@ -13,7 +13,7 @@ public class UIWindowManager {
     private static ArrayList<UIWindow> windows = new ArrayList<>();
 
     // Create new window 
-    public static UIWindow newWindow(UIWindowProperty property) throws RepeatedUIWindowNameException {
+    public static UIWindow newWindow(UIWindowProperty property) {
 
         // Check if there is any window with the same name
         // If there is, throw an exception

@@ -1,4 +1,4 @@
-package lab.darf.javaui.exceptions;
+package luke.hysong.javaui.exceptions;
 
 public class NoSuchUIWindowException extends Exception {
     public NoSuchUIWindowException(String message) {

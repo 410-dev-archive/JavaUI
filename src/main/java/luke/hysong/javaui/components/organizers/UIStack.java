@@ -1,4 +1,4 @@
-package lab.darf.javaui.components.organizers;
+package luke.hysong.javaui.components.organizers;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,8 +11,8 @@ import java.util.UUID;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
-import lab.darf.javaui.components.UIElement;
-import lab.darf.javaui.components.UINonContainerElement;
+import luke.hysong.javaui.components.UIElement;
+import luke.hysong.javaui.components.UINonContainerElement;
 import lombok.Getter;
 
 public class UIStack extends JPanel implements UIContainerElement {
@@ -272,7 +272,7 @@ public class UIStack extends JPanel implements UIContainerElement {
     }
 
     @Override
-    public UIElement component(String name) {
+    public UIElement getComponent(String name) {
         for (UIElement element : componentList) {
             if (element.getName().equals(name)) {
                 return element;

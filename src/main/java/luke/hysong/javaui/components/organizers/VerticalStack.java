@@ -1,12 +1,12 @@
-package lab.darf.javaui.components.organizers;
+package luke.hysong.javaui.components.organizers;
 
 public class VerticalStack extends UIStack {
 
     public VerticalStack(int width, int height) {
-        super(width, height, UIStack.VERTICAL);
+        super(width, height, VERTICAL);
     }
 
     public VerticalStack() {
-        super(UIStack.VERTICAL);
+        super(VERTICAL);
     }
 }

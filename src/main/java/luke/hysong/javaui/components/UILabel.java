@@ -1,9 +1,9 @@
-package lab.darf.javaui.components;
+package luke.hysong.javaui.components;
 
 import javax.swing.JLabel;
 import javax.swing.event.MouseInputAdapter;
 
-import lab.darf.javaui.components.organizers.UIContainerElement;
+import luke.hysong.javaui.components.organizers.UIContainerElement;
 import lombok.Getter;
 
 import java.awt.Font;

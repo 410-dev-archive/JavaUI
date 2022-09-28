@@ -1,6 +1,6 @@
-package lab.darf.javaui.exceptions;
+package luke.hysong.javaui.exceptions;
 
-public class RepeatedUIWindowNameException extends Exception {
+public class RepeatedUIWindowNameException extends RuntimeException {
     public RepeatedUIWindowNameException(String message) {
         super("Repeated window name: " + message);
     }
